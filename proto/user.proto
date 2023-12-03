@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package models;
+
+// User represents a user of the system.
+message User {
+    string id = 1;
+    string username = 2;
+    string email = 3;
+    string password = 4; // Store as a hash
+    string profile = 5;  // URL to the profile picture
+    string bio = 6;
+}

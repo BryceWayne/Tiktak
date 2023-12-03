@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package models;
+
+// Video represents a video uploaded by a user.
+message Video {
+    string id = 1;
+    string userId = 2;
+    string title = 3;
+    string description = 4;
+    string url = 5;       // URL to the video file
+    string thumbnail = 6; // URL to the thumbnail image
+    google.protobuf.Timestamp timestamp = 7;
+}

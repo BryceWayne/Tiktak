@@ -1,4 +1,184 @@
+definitions:
+  models.Comment:
+    properties:
+      id:
+        type: string
+      text:
+        type: string
+      timestamp:
+        type: string
+      userId:
+        type: string
+      videoId:
+        type: string
+    type: object
+  models.Like:
+    properties:
+      id:
+        type: string
+      userId:
+        type: string
+      videoId:
+        type: string
+    type: object
+  models.User:
+    properties:
+      bio:
+        type: string
+      email:
+        type: string
+      id:
+        type: string
+      password:
+        description: Store as a hash
+        type: string
+      profile:
+        description: URL to the profile picture
+        type: string
+      username:
+        type: string
+    type: object
+  models.Video:
+    properties:
+      description:
+        type: string
+      id:
+        type: string
+      thumbnail:
+        description: URL to the thumbnail image
+        type: string
+      timestamp:
+        type: string
+      title:
+        type: string
+      url:
+        description: URL to the video file
+        type: string
+      userId:
+        type: string
+    type: object
 info:
   contact: {}
-paths: {}
+paths:
+  /comments:
+    post:
+      consumes:
+      - application/json
+      description: Add a comment to a video
+      parameters:
+      - description: Comment Content
+        in: body
+        name: comment
+        required: true
+        schema:
+          $ref: '#/definitions/models.Comment'
+      produces:
+      - application/json
+      responses: {}
+      summary: Post a comment
+      tags:
+      - comments
+  /comments/{videoId}:
+    get:
+      description: Retrieve all comments for a specific video
+      parameters:
+      - description: Video ID
+        in: path
+        name: videoId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      summary: Get comments
+      tags:
+      - comments
+  /likes:
+    post:
+      consumes:
+      - application/json
+      description: Like a video by a user
+      parameters:
+      - description: Like Details
+        in: body
+        name: like
+        required: true
+        schema:
+          $ref: '#/definitions/models.Like'
+      produces:
+      - application/json
+      responses: {}
+      summary: Add a like to a video
+      tags:
+      - likes
+  /likes/{videoId}:
+    get:
+      description: Retrieve all likes for a specific video
+      parameters:
+      - description: Video ID
+        in: path
+        name: videoId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      summary: Get likes for a video
+      tags:
+      - likes
+  /login:
+    post:
+      consumes:
+      - application/json
+      description: Authenticate a user and return a token
+      produces:
+      - application/json
+      responses: {}
+      summary: Authenticate a user
+      tags:
+      - users
+  /register:
+    post:
+      consumes:
+      - application/json
+      description: Register a user with username, email, and password
+      parameters:
+      - description: User Registration Data
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses: {}
+      summary: Register a new user
+      tags:
+      - users
+  /videos:
+    get:
+      description: Retrieves all videos from the platform
+      produces:
+      - application/json
+      responses: {}
+      summary: Get all videos
+      tags:
+      - videos
+    post:
+      consumes:
+      - application/json
+      description: Uploads a video to the platform
+      parameters:
+      - description: Video Details
+        in: body
+        name: video
+        required: true
+        schema:
+          $ref: '#/definitions/models.Video'
+      produces:
+      - application/json
+      responses: {}
+      summary: Upload a new video
+      tags:
+      - videos
 swagger: "2.0"

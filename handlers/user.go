@@ -6,17 +6,14 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-// swagger:route POST /register users registerUser
 // RegisterUser registers a new user.
-// Consumes:
-// - application/json
-// Produces:
-// - application/json
-// Responses:
-//
-//	200: userResponse
-//	400: errorResponse
-//	500: errorResponse
+// @Summary Register a new user
+// @Description Register a user with username, email, and password
+// @Tags users
+// @Accept json
+// @Produce json
+// @Param user body models.User required "User Registration Data"
+// @Router /register [post]
 func RegisterUser(c *fiber.Ctx, userService services.UserService) error {
 	// Create a new User struct to hold the user's input
 	var user models.User
@@ -35,75 +32,14 @@ func RegisterUser(c *fiber.Ctx, userService services.UserService) error {
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{"message": "User registered successfully"})
 }
 
-// swagger:operation POST /login users loginUser
-// ---
-// summary: Authenticates a user.
-// description: This will authenticate a user and return a token.
-// consumes:
-// - application/json
-// produces:
-// - application/json
-// parameters:
-//   - name: user
-//     in: body
-//     description: User login credentials
-//     required: true
-//     schema:
-//     "$ref": "#/definitions/UserCredentials"
-//
-// responses:
-//
-//	'200':
-//	  description: Successful login
-//	  schema:
-//	    "$ref": "#/definitions/UserToken"
-//	'401':
-//	  description: Unauthorized - Invalid credentials
-//	  schema:
-//	    "$ref": "#/definitions/errorResponse"
-//	'500':
-//	  description: Internal Server Error
-//	  schema:
-//	    "$ref": "#/definitions/errorResponse"
+// LoginUser authenticates a user.
+// @Summary Authenticate a user
+// @Description Authenticate a user and return a token
+// @Tags users
+// @Accept json
+// @Produce json
+// @Router /login [post]
 func LoginUser(c *fiber.Ctx, userService services.UserService) error {
 	// TODO: Implement
 	return nil
-}
-
-// Define the response and other models here, or in a separate file
-// swagger:model userResponse
-type userResponse struct {
-	// The user ID
-	// in: body
-	ID string `json:"id"`
-	// The user's username
-	// in: body
-	Username string `json:"username"`
-	// The user's email
-	// in: body
-	Email string `json:"email"`
-}
-
-// swagger:model errorResponse
-type errorResponse struct {
-	// The error message
-	// in: body
-	Message string `json:"message"`
-}
-
-// swagger:model UserCredentials
-type UserCredentials struct {
-	// The user's username
-	// in: body
-	Username string `json:"username"`
-	// The user's password
-	// in: body
-	Password string `json:"password"`
-}
-
-// swagger:model UserToken
-type UserToken struct {
-	// The JWT token for authenticated user
-	// in: body
-	Token string `json:"token"`
 }
