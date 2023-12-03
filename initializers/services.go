@@ -5,7 +5,8 @@ import (
 	"github.com/BryceWayne/tiktak/services"
 )
 
-func InitializeServices() (services.UserService, services.VideoService, services.CommentService, services.LikeService) {
+// Initialize all services and return a Services struct
+func InitializeServices() Services {
 	userRepo := repositories.NewUserRepository()
 	userService := services.NewUserService(userRepo)
 
@@ -18,5 +19,10 @@ func InitializeServices() (services.UserService, services.VideoService, services
 	likeRepo := repositories.NewLikeRepository()
 	likeService := services.NewLikeService(likeRepo)
 
-	return userService, videoService, commentService, likeService
+	return Services{
+		UserService:    userService,
+		VideoService:   videoService,
+		CommentService: commentService,
+		LikeService:    likeService,
+	}
 }
