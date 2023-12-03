@@ -25,10 +25,10 @@ A step-by-step series of examples that tell you how to get a development environ
 
 ```bash
 # Clone the repository
-git clone https://github.com/BryceWayne/tiktak.git
+git clone https://github.com/BryceWayne/Tiktak.git
 
 # Navigate to the project directory
-cd tiktak
+cd Tiktak
 
 # Install dependencies (if any)
 go mod tidy
@@ -71,17 +71,17 @@ _Note: Detailed API documentation with Swagger is currently in development._
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](link-to-your-contributing.md-file) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](https://github.com/BryceWayne/Tiktak/blob/root/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/BryceWayne/tiktak/tags).
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/BryceWayne/Tiktak/tags).
 
 ## Authors
 
 - **Bryce Chudomelka** - *Initial work* - [BryceWayne](https://github.com/BryceWayne)
 
-See also the list of [contributors](https://github.com/BryceWayne/tiktak/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/BryceWayne/Tiktak/contributors) who participated in this project.
 
 ## License
 
