@@ -22,10 +22,14 @@ func NewCommentRepository( /* db connection or other data sources */ ) CommentRe
 
 func (repo *commentRepository) SaveComment(ctx context.Context, comment *models.Comment) error {
     // Implementation for saving a comment in the database
+
+    return nil
 }
 
 func (repo *commentRepository) GetCommentsByVideoID(ctx context.Context, videoID string) ([]models.Comment, error) {
     // Implementation for retrieving comments by video ID from the database
+
+    return []models.Comment{}, nil
 }
 
 // ... other CRUD operation implementations

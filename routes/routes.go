@@ -6,7 +6,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func SetupRoutes(app *fiber.App, userService services.UserService) {
+func SetupRoutes(app *fiber.App, userService services.UserService, videoService services.VideoService, commentService services.CommentService, likeService services.LikeService) {
 	app.Post("/register", func(c *fiber.Ctx) error {
 		return handlers.RegisterUser(c, userService)
 	})

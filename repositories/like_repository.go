@@ -22,10 +22,14 @@ func NewLikeRepository( /* db connection or other data sources */ ) LikeReposito
 
 func (repo *likeRepository) SaveLike(ctx context.Context, like *models.Like) error {
     // Implementation for saving a like in the database
+
+    return nil
 }
 
 func (repo *likeRepository) GetLikesByVideoID(ctx context.Context, videoID string) ([]models.Like, error) {
     // Implementation for retrieving likes by video ID from the database
+
+    return []models.Like{}, nil
 }
 
 // ... other CRUD operation implementations
