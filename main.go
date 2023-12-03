@@ -12,10 +12,8 @@ func main() {
 	app := fiber.New()
 
 	userService, videoService, commentService, likeService := initializers.InitializeServices()
-	// Initialize all services
-	services := initializeServices()
 
-	routes.SetupRoutes(app, services)
+	routes.SetupRoutes(app, userService, videoService, commentService, likeService)
 
 	// Start the server
 	log.Fatalf("%v\n", app.Listen(":8080"))
