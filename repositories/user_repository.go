@@ -2,7 +2,9 @@ package repositories
 
 import (
 	"context"
+	"log"
 
+	"cloud.google.com/go/firestore"
 	"github.com/BryceWayne/tiktak/models"
 )
 
@@ -13,23 +15,35 @@ type UserRepository interface {
 }
 
 type userRepository struct {
-	// db connection or any other data source
+	db *firestore.Client
 }
 
-func NewUserRepository( /* db connection or other data sources */ ) UserRepository {
-	return &userRepository{ /* ... */ }
+func NewUserRepository(db *firestore.Client) UserRepository {
+	return &userRepository{db: db}
 }
 
 func (repo *userRepository) CreateUser(ctx context.Context, user *models.User) error {
-	// Implementation for creating a user in the database
-
-	return nil
+	_, err := repo.db.Collection("users").Doc(user.ID).Set(ctx, user)
+	log.Printf("SUCCESS: userRepository.CreateUser - %v", err)
+	return err
 }
 
-func (repo *userRepository) GetUserByID(ctx context.Context, id string) (*models.User, error) {
-	// Implementation for retrieving a user by ID from the database
+func (repo *userRepository) GetUserByID(ctx context.Context, userID string) (*models.User, error) {
+	doc, err := repo.db.Collection("users").Doc(userID).Get(ctx)
+	if err != nil {
+		log.Printf("ERROR: userRepository.GetUserByID - %v", err)
+		return nil, err
+	}
 
-	return &models.User{}, nil
+	var user models.User
+	err = doc.DataTo(&user)
+	if err != nil {
+		log.Printf("ERROR: userRepository.GetUserByID - %v", err)
+		return nil, err
+	}
+
+	log.Printf("SUCCESS: userRepository.GetUserByID - %v", err)
+	return &user, err
 }
 
 // ... other CRUD operation implementations

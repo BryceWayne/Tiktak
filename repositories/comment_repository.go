@@ -3,6 +3,7 @@ package repositories
 import (
     "context"
 
+    "cloud.google.com/go/firestore"
     "github.com/BryceWayne/tiktak/models"
 )
 
@@ -13,11 +14,11 @@ type CommentRepository interface {
 }
 
 type commentRepository struct {
-    // db connection or any other data source
+    db *firestore.Client
 }
 
-func NewCommentRepository( /* db connection or other data sources */ ) CommentRepository {
-    return &commentRepository{ /* ... */ }
+func NewCommentRepository(db *firestore.Client) CommentRepository {
+    return &commentRepository{db: db}
 }
 
 func (repo *commentRepository) SaveComment(ctx context.Context, comment *models.Comment) error {

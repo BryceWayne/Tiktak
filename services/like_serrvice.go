@@ -4,6 +4,7 @@ import (
     "context"
 
     "github.com/BryceWayne/tiktak/models"
+    "github.com/BryceWayne/tiktak/pubsubclient"
     "github.com/BryceWayne/tiktak/repositories"
 )
 
@@ -14,11 +15,15 @@ type LikeService interface {
 }
 
 type likeService struct {
-    likeRepo repositories.LikeRepository
+    likeRepo      repositories.LikeRepository
+    pubSubService *pubsubclient.PubSubService
 }
 
-func NewLikeService(likeRepo repositories.LikeRepository) LikeService {
-    return &likeService{likeRepo}
+func NewLikeService(likeRepo repositories.LikeRepository, pubSubService *pubsubclient.PubSubService) LikeService {
+    return &likeService{
+        likeRepo:      likeRepo,
+        pubSubService: pubSubService,
+    }
 }
 
 func (s *likeService) AddLike(ctx context.Context, like *models.Like) error {

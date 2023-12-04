@@ -3,6 +3,7 @@ package repositories
 import (
     "context"
 
+    "cloud.google.com/go/firestore"
     "github.com/BryceWayne/tiktak/models"
 )
 
@@ -13,11 +14,11 @@ type VideoRepository interface {
 }
 
 type videoRepository struct {
-    // db connection or any other data source
+    db *firestore.Client
 }
 
-func NewVideoRepository( /* db connection or other data sources */ ) VideoRepository {
-    return &videoRepository{ /* ... */ }
+func NewVideoRepository(db *firestore.Client) VideoRepository {
+    return &videoRepository{db: db}
 }
 
 func (repo *videoRepository) SaveVideo(ctx context.Context, video *models.Video) error {

@@ -4,6 +4,7 @@ import (
     "context"
 
     "github.com/BryceWayne/tiktak/models"
+    "github.com/BryceWayne/tiktak/pubsubclient"
     "github.com/BryceWayne/tiktak/repositories"
 )
 
@@ -14,11 +15,15 @@ type UserService interface {
 }
 
 type userService struct {
-    userRepo repositories.UserRepository
+    userRepo      repositories.UserRepository
+    pubSubService *pubsubclient.PubSubService
 }
 
-func NewUserService(userRepo repositories.UserRepository) UserService {
-    return &userService{userRepo}
+func NewUserService(userRepo repositories.UserRepository, pubSubService *pubsubclient.PubSubService) UserService {
+    return &userService{
+        userRepo:      userRepo,
+        pubSubService: pubSubService,
+    }
 }
 
 func (s *userService) RegisterUser(ctx context.Context, user *models.User) error {

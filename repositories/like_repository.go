@@ -3,6 +3,7 @@ package repositories
 import (
     "context"
 
+    "cloud.google.com/go/firestore"
     "github.com/BryceWayne/tiktak/models"
 )
 
@@ -13,11 +14,11 @@ type LikeRepository interface {
 }
 
 type likeRepository struct {
-    // db connection or any other data source
+    db *firestore.Client
 }
 
-func NewLikeRepository( /* db connection or other data sources */ ) LikeRepository {
-    return &likeRepository{ /* ... */ }
+func NewLikeRepository(db *firestore.Client) LikeRepository {
+    return &likeRepository{db: db}
 }
 
 func (repo *likeRepository) SaveLike(ctx context.Context, like *models.Like) error {
