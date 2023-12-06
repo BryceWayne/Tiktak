@@ -16,7 +16,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 - Go (Version 1.21)
-- Database setup (e.g., MySQL, PostgreSQL)
+- Database setup (Google Cloud Firestore)
 - Any other environment-specific setups (like external APIs if used)
 
 ### Installing
@@ -65,8 +65,8 @@ _Note: Detailed API documentation with Swagger is currently in development._
 
 - [Go](https://golang.org/) - The Go Programming Language
 - [Fiber](https://gofiber.io/) - An Express-inspired web framework for Go
-- [MySQL/PostgreSQL/etc.] - Database
-- [Docker](https://www.docker.com/) - Containerization (if used)
+- [Firestore](https://cloud.google.com/firestore?hl=en) - Database
+- [Docker](https://www.docker.com/) - Containerization
 - [Any other major libraries or frameworks used]
 
 ## Contributing
